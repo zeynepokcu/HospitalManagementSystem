@@ -125,7 +125,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabel3.setText("Giriş Tipi:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Danışma", "Doktor", "Hasta" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Danışma", "Hasta" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -217,11 +217,6 @@ public class LoginPage extends javax.swing.JFrame {
 
             if (rs.next()) {
                 if (getLtype().equals("Danışma")) {
-                    setVisible(false);
-                    MenuPage ob = new MenuPage();
-                    ob.setVisible(true);
-
-                } else if (getLtype().equals("Doktor")) {
                     setVisible(false);
                     MenuPage ob = new MenuPage();
                     ob.setVisible(true);
