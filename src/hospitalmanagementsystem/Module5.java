@@ -1,0 +1,647 @@
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package hospitalmanagementsystem;
+
+import java.awt.Color;
+import java.awt.HeadlessException;
+import java.sql.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+/**
+ *
+ * @author Zeynep
+ */
+public class Module5 extends javax.swing.JFrame {
+
+    Connection con;
+    DefaultTableModel dm;
+
+    int paymentNo;
+    int tcNo;
+    String firstName;
+    String lastName;
+    float bill;
+    String didPay = " ";
+    String date = " ";
+    String time = " ";
+
+    public int getPaymentNo() {
+        paymentNo = Integer.parseInt(jTextField1.getText());
+        return paymentNo;
+    }
+
+    public void setPaymentNo(int paymentNo) {
+        this.paymentNo = paymentNo;
+    }
+
+    public int getTcNo() {
+        tcNo = Integer.parseInt(jTextField2.getText());
+        return tcNo;
+    }
+
+    public void setTcNo(int tcNo) {
+        this.tcNo = tcNo;
+    }
+
+    public String getFirstName() {
+        firstName = jTextField3.getText();
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        lastName = jTextField4.getText();
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public float getBill() {
+        bill = Float.parseFloat(jTextField5.getText());
+        return bill;
+    }
+
+    public void setBill(float bill) {
+        this.bill = bill;
+    }
+
+    public String getDidPay() {
+        if (jRadioButton1.isSelected()) {
+            didPay = "Ödendi";
+        } else if (jRadioButton2.isSelected()) {
+            didPay = "Ödenmedi";
+        }
+        return didPay;
+    }
+
+    public void setDidPay(String didPay) {
+        this.didPay = didPay;
+    }
+
+    public String getDate() {
+        if (jRadioButton1.isSelected()) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            date = sdf.format(jDateChooser1.getDate());
+        } else if (jRadioButton2.isSelected()) {
+            date = "0000-00-00";
+        }
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        if (jRadioButton1.isSelected()) {
+            time = jTextField6.getText();
+        } else if (jRadioButton2.isSelected()) {
+            time = "00:00:00";
+        }
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    /**
+     * Creates new form Module1
+     */
+    public Module5() {
+        initComponents();
+        CreateColumns();
+        setExtendedState(Module5.MAXIMIZED_BOTH);
+        Color background = new Color(236,242,246);
+        this.getContentPane().setBackground(background);
+        showPaymentTable();
+    }
+
+    private void CreateColumns() {
+        dm = (DefaultTableModel) paymentTable.getModel();
+        paymentTable.setModel(dm);
+        //add columns
+        dm.addColumn("Ödeme Numarası");
+        dm.addColumn("Hasta TC No");
+        dm.addColumn("Hasta Adı");
+        dm.addColumn("Hasta Soyadı");
+        dm.addColumn("Fatura(TL)");
+        dm.addColumn("Ödeme Durumu");
+        dm.addColumn("Ödeme Tarihi");
+        dm.addColumn("Ödeme Saati");
+    }
+
+    public void showPaymentTable() {
+        try {
+            Connection con = ConnectionProvider.getCon();
+            String sql = "SELECT * FROM Payments";
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+            DefaultTableModel tm = (DefaultTableModel) paymentTable.getModel();
+            tm.setRowCount(0);
+
+            while (rs.next()) {
+                Object o[] = {rs.getInt("paymentNo"), rs.getInt("patientTC"), rs.getString("patientName"), rs.getString("patientSurname"), rs.getFloat("bill"), rs.getString("didPay"), rs.getString("payDate"), rs.getString("payTime")};
+                tm.addRow(o);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        addPayment = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        paymentTable = new javax.swing.JTable();
+        deletePayment = new javax.swing.JButton();
+        updatePayment = new javax.swing.JButton();
+        searchAppointment = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel11 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ödeme Kayıtları");
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setPreferredSize(new java.awt.Dimension(1920, 1000));
+
+        jLabel1.setFont(new java.awt.Font("Bahnschrift", 1, 60)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(61, 76, 143));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Ödeme Kayıtları");
+
+        jLabel2.setText("Ödeme Numarası:");
+        jLabel2.setAlignmentX(0.5F);
+
+        jLabel3.setText("Hasta TC No:");
+        jLabel3.setAlignmentX(0.5F);
+
+        jLabel4.setText("Hasta Ad:");
+        jLabel4.setAlignmentX(0.5F);
+
+        jLabel5.setText("Hasta Soyad:");
+        jLabel5.setAlignmentX(0.5F);
+
+        jLabel6.setText("Fatura (TL):");
+
+        jLabel7.setText("Ödeme Durumu:");
+
+        jLabel8.setText("Ödeme Tarihi: ");
+        jLabel8.setAlignmentX(0.5F);
+
+        jLabel9.setText("Ödeme Saati:");
+
+        jLabel10.setText("Aramak istediğiniz hastanın TC numarasını giriniz:");
+
+        addPayment.setText("Kaydet");
+        addPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPaymentActionPerformed(evt);
+            }
+        });
+
+        backButton.setText("GERİ");
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backButtonMouseClicked(evt);
+            }
+        });
+
+        paymentTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        paymentTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        paymentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paymentTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(paymentTable);
+
+        deletePayment.setText("Sil");
+        deletePayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletePaymentActionPerformed(evt);
+            }
+        });
+
+        updatePayment.setText("Güncelle");
+        updatePayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatePaymentActionPerformed(evt);
+            }
+        });
+
+        searchAppointment.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchAppointmentKeyReleased(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Ödendi");
+        jRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton1MouseClicked(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Ödenmedi");
+        jRadioButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton2MouseClicked(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Franklin Gothic Book", 0, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(61, 76, 143));
+        jLabel11.setText("Yeni Ödeme Ekle");
+
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10)
+                    .addComponent(addPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                .addComponent(jTextField5))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jRadioButton1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jRadioButton2))))))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(searchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
+                        .addComponent(updatePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(deletePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addGap(45, 45, 45))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(537, 537, 537))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(148, 148, 148)
+                .addComponent(jLabel11)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel11)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jRadioButton1)
+                            .addComponent(jRadioButton2))
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(50, 50, 50)
+                        .addComponent(addPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(updatePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deletePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        getAccessibleContext().setAccessibleDescription("");
+
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void addPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPaymentActionPerformed
+        try {
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement();
+            st.executeUpdate("insert into payments values('" + getPaymentNo() + "','" + getTcNo() + "','" + getFirstName() + "','" + getLastName() + "','" + getBill() + "','" + getDidPay() + "','" + getDate() + "','" + getTime() + "')");
+            JOptionPane.showMessageDialog(null, "Başarıyla eklendi!");
+
+        } catch (SQLException | HeadlessException ex) {
+            JOptionPane.showMessageDialog(null, "Lütfen doğru formatta giriniz!");
+        }
+        showPaymentTable();
+    }//GEN-LAST:event_addPaymentActionPerformed
+
+    private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
+        MenuPage obj = new MenuPage();
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_backButtonMouseClicked
+
+    private void paymentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentTableMouseClicked
+        jTextField1.setText(paymentTable.getValueAt(paymentTable.getSelectedRow(), 0).toString());
+        jTextField2.setText(paymentTable.getValueAt(paymentTable.getSelectedRow(), 1).toString());
+        jTextField3.setText(paymentTable.getValueAt(paymentTable.getSelectedRow(), 2).toString());
+        jTextField4.setText(paymentTable.getValueAt(paymentTable.getSelectedRow(), 3).toString());
+        jTextField5.setText(paymentTable.getValueAt(paymentTable.getSelectedRow(), 4).toString());
+        didPay = paymentTable.getValueAt(paymentTable.getSelectedRow(), 5).toString();
+        if (didPay.equals("Ödendi")) {
+            jRadioButton1.setSelected(true);
+            jDateChooser1.setEnabled(true);
+            try {
+                DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                java.sql.Date date = (java.sql.Date) simpleDateFormat.parse(" ");
+                jDateChooser1.setDate((java.util.Date) paymentTable.getValueAt(paymentTable.getSelectedRow(), 6));
+            } catch (ParseException e) {
+            }
+            jTextField6.setEnabled(true);
+        } else if (didPay.equals("Ödenmedi")) {
+            jRadioButton2.setSelected(true);
+            jDateChooser1.setEnabled(false);
+            jTextField6.setEnabled(false);
+        }
+        jTextField6.setText(paymentTable.getValueAt(paymentTable.getSelectedRow(), 7).toString());
+
+    }//GEN-LAST:event_paymentTableMouseClicked
+
+    private void deletePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePaymentActionPerformed
+        try {
+            String sql = "DELETE FROM Payments WHERE paymentNo=?";
+            Connection con = ConnectionProvider.getCon();
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, getPaymentNo());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Başarıyla silindi!");
+        } catch (SQLException | HeadlessException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        showPaymentTable();
+
+    }//GEN-LAST:event_deletePaymentActionPerformed
+
+    private void updatePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePaymentActionPerformed
+        try {
+            String sql = "UPDATE Payments SET paymentNo='" + getPaymentNo() + "',patientTC='" + getTcNo() + "',patientName='" + getFirstName() + "',patientSurname='" + getLastName() + "',bill='" + getBill() + "',didPay='" + getDidPay() + "',payDate='" + getDate() + "',payTime='" + getTime() + "' WHERE paymentNo='" + getPaymentNo() + "'";
+            Connection con = ConnectionProvider.getCon();
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Başarıyla güncellendi!");
+
+        } catch (SQLException | HeadlessException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        showPaymentTable();
+    }//GEN-LAST:event_updatePaymentActionPerformed
+
+    private void searchAppointmentKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchAppointmentKeyReleased
+        dm = (DefaultTableModel) paymentTable.getModel();
+        String search = searchAppointment.getText();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);
+        paymentTable.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(search));
+    }//GEN-LAST:event_searchAppointmentKeyReleased
+
+    private void jRadioButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton2MouseClicked
+        jTextField6.setEnabled(false);
+        jDateChooser1.setEnabled(false);
+    }//GEN-LAST:event_jRadioButton2MouseClicked
+
+    private void jRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton1MouseClicked
+        jTextField6.setEnabled(true);
+        jDateChooser1.setEnabled(true);
+    }//GEN-LAST:event_jRadioButton1MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Module5.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Module5().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addPayment;
+    private javax.swing.JButton backButton;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton deletePayment;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTable paymentTable;
+    private javax.swing.JTextField searchAppointment;
+    private javax.swing.JButton updatePayment;
+    // End of variables declaration//GEN-END:variables
+
+    private static class module1 {
+
+        public module1() {
+        }
+
+        private void setVisible(boolean b) {
+
+        }
+    }
+
+    private static class DbUtils {
+
+        private static TableModel resultSetToTableModel(ResultSet rs) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        public DbUtils() {
+        }
+    }
+
+}
