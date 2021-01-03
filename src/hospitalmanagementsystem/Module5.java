@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,8 +14,6 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
@@ -31,11 +28,10 @@ import javax.swing.table.TableRowSorter;
  */
 public class Module5 extends javax.swing.JFrame {
 
-    Connection con;
     DefaultTableModel dm;
 
     int paymentNo;
-    int tcNo;
+    String tcNo;
     String firstName;
     String lastName;
     float bill;
@@ -52,12 +48,12 @@ public class Module5 extends javax.swing.JFrame {
         this.paymentNo = paymentNo;
     }
 
-    public int getTcNo() {
-        tcNo = Integer.parseInt(jTextField2.getText());
+    public String getTcNo() {
+        tcNo = jTextField2.getText();
         return tcNo;
     }
 
-    public void setTcNo(int tcNo) {
+    public void setTcNo(String tcNo) {
         this.tcNo = tcNo;
     }
 
@@ -165,7 +161,7 @@ public class Module5 extends javax.swing.JFrame {
             tm.setRowCount(0);
 
             while (rs.next()) {
-                Object o[] = {rs.getInt("paymentNo"), rs.getInt("patientTC"), rs.getString("patientName"), rs.getString("patientSurname"), rs.getFloat("bill"), rs.getString("didPay"), rs.getString("payDate"), rs.getString("payTime")};
+                Object o[] = {rs.getInt("paymentNo"), rs.getString("patientTC"), rs.getString("patientName"), rs.getString("patientSurname"), rs.getFloat("bill"), rs.getString("didPay"), rs.getString("payDate"), rs.getString("payTime")};
                 tm.addRow(o);
             }
 
@@ -311,7 +307,7 @@ public class Module5 extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Franklin Gothic Book", 0, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(61, 76, 143));
         jLabel11.setText("Yeni Ödeme Ekle");
 
@@ -367,23 +363,25 @@ public class Module5 extends javax.swing.JFrame {
                         .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addGap(45, 45, 45))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(537, 537, 537))
             .addGroup(layout.createSequentialGroup()
-                .addGap(148, 148, 148)
+                .addGap(154, 154, 154)
                 .addComponent(jLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(514, 514, 514))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel11)
-                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabel11)
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(39, 39, 39)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -421,14 +419,14 @@ public class Module5 extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addComponent(addPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(updatePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deletePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");

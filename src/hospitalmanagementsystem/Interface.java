@@ -9,9 +9,14 @@ package hospitalmanagementsystem;
  *
  * @author Zeynep
  */
-
-//Interface örneğidir. (Example for interface)
 public interface Interface {
 
-    public void dene();
+    public String getHastane();
+
+    public static void main(String[] args) {
+
+        Hastane okcuHastanesi = new Hastane();
+        System.out.println(okcuHastanesi.hastane);
+
+    }
 }

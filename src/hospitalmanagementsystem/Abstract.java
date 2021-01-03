@@ -17,7 +17,7 @@ public abstract class Abstract {
 
     public double bolme(int a, int b) {
         double sonuc = a / b;
-        System.out.println("Sonuc: " + sonuc);
+        System.out.println("Sonuç: " + sonuc);
         return sonuc;
     }
 }

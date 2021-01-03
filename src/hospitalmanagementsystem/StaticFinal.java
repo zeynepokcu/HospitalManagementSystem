@@ -10,13 +10,13 @@ package hospitalmanagementsystem;
  * @author Zeynep
  */
 
-// Static ve Final örneğidir. (Example for Static and Final)
+// Static ve Final örneğidir.
 public class StaticFinal {
 
-    public static int a = 0;//static değişken örneğidir. son aldığı değeri döndürür.
-    public final int b = 5;//final değişken örneğidir. değeri değişmez.
+    public static int a = 0;//Static değişken örneğidir. Son aldığı değeri döndürür.
+    public final int b = 5;//Final değişken örneğidir. Değeri değişmez.
 
-    public static int cikarma(int a, int b) {//static metot örneğidir.
+    public static int cikarma(int a, int b) {//Static metot örneğidir.
         int sonuc = a - b;
         return sonuc;
     }

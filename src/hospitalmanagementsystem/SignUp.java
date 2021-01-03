@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
  */
 public class SignUp extends javax.swing.JFrame {
 
-    Connection con;
     PreparedStatement pst;
 
     /**
@@ -204,8 +203,6 @@ public class SignUp extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
-
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

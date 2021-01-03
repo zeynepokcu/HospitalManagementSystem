@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,8 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
@@ -29,7 +26,6 @@ import javax.swing.table.TableModel;
  */
 public class Module7 extends javax.swing.JFrame {
 
-    Connection con;
     DefaultTableModel dm;
 
     private String polyclinic;
@@ -341,7 +337,7 @@ public class Module7 extends javax.swing.JFrame {
 
         showAppointment.setBackground(new java.awt.Color(61, 76, 143));
         showAppointment.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-        showAppointment.setForeground(new java.awt.Color(227, 242, 248));
+        showAppointment.setForeground(new java.awt.Color(236, 241, 242));
         showAppointment.setText("Randevu Sorgula");
         showAppointment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

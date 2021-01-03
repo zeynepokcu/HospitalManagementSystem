@@ -9,14 +9,9 @@ package hospitalmanagementsystem;
  *
  * @author Zeynep
  */
-public class HospitalManagementSystem {
+public class InterfaceOrnek implements Interface {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-
-
+    public String getHastane() {
+        return "Okcu Hastanesi";
     }
-
 }

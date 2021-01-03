@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,8 +14,6 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +26,6 @@ import javax.swing.table.TableRowSorter;
  */
 public class Module4 extends javax.swing.JFrame {
 
-    Connection con;
     DefaultTableModel dm;
 
     private String polyclinic;
@@ -81,7 +77,7 @@ public class Module4 extends javax.swing.JFrame {
 
     public String getLDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        ldate = sdf.format(jDateChooser1.getDate());
+        ldate = sdf.format(jDateChooser2.getDate());
         return ldate;
     }
 
@@ -132,7 +128,7 @@ public class Module4 extends javax.swing.JFrame {
         initComponents();
         CreateColumns();
         setExtendedState(Module4.MAXIMIZED_BOTH);
-        Color background = new Color(236,242,246);
+        Color background = new Color(236, 242, 246);
         this.getContentPane().setBackground(background);
         showRoomTable();
         showPolyclinics();
@@ -164,7 +160,7 @@ public class Module4 extends javax.swing.JFrame {
             tm.setRowCount(0);
 
             while (rs.next()) {
-                Object o[] = {rs.getString("polyclinic"), rs.getInt("roomNo"), rs.getString("rdate"), rs.getString("rtime"), rs.getString("ldate"), rs.getString("ltime"), rs.getInt("patientTC"), rs.getString("patientName"), rs.getString("patientSurname")};
+                Object o[] = {rs.getString("polyclinic"), rs.getInt("roomNo"), rs.getString("rdate"), rs.getString("rtime"), rs.getString("ldate"), rs.getString("ltime"), rs.getString("patientTC"), rs.getString("patientName"), rs.getString("patientSurname")};
                 tm.addRow(o);
             }
 
@@ -207,7 +203,7 @@ public class Module4 extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
-        addPatient = new javax.swing.JButton();
+        addRoom = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -249,10 +245,10 @@ public class Module4 extends javax.swing.JFrame {
         jLabel5.setText("Oda Numarası:");
         jLabel5.setAlignmentX(0.5F);
 
-        addPatient.setText("Kaydet");
-        addPatient.addActionListener(new java.awt.event.ActionListener() {
+        addRoom.setText("Kaydet");
+        addRoom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addPatientActionPerformed(evt);
+                addRoomActionPerformed(evt);
             }
         });
 
@@ -310,7 +306,7 @@ public class Module4 extends javax.swing.JFrame {
 
         jLabel10.setText("Aramak istediğiniz hastanın TC numarasını giriniz:");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(61, 76, 143));
         jLabel14.setText("Odaya Giriş Ekle");
 
@@ -329,14 +325,12 @@ public class Module4 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(536, 536, 536))
             .addGroup(layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addComponent(jLabel14)
-                .addContainerGap(1598, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(515, 515, 515))
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -376,12 +370,12 @@ public class Module4 extends javax.swing.JFrame {
                         .addGap(200, 200, 200)
                         .addComponent(jLabel2))
                     .addComponent(jLabel10)
-                    .addComponent(addPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(75, 75, 75)
+                    .addComponent(addRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(searchRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
                         .addComponent(updateRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(98, 98, 98)
                         .addComponent(deleteRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -396,11 +390,14 @@ public class Module4 extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(33, 33, 33)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -441,12 +438,12 @@ public class Module4 extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50)
-                        .addComponent(addPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58)
+                        .addComponent(addRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(updateRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -466,19 +463,26 @@ public class Module4 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientActionPerformed
-
+    private void addRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomActionPerformed
         try {
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
             st.executeUpdate("insert into rooms values('" + getPolyclinic() + "','" + getRoomNo() + "','" + getRDate() + "','" + getRTime() + "','" + getLDate() + "','" + getLTime() + "','" + getTcNo() + "','" + getFirstName() + "','" + getLastName() + "')");
             JOptionPane.showMessageDialog(null, "Başarıyla eklendi!");
-
+            jTextField1.setText(null);
+            jTextField2.setText(null);
+            jTextField3.setText(null);
+            jTextField4.setText(null);
+            jTextField5.setText(null);
+            jTextField6.setText(null);
+            jComboBox1.setSelectedIndex(0);
+            jDateChooser1.setDate(null);
+            jDateChooser2.setDate(null);
         } catch (SQLException | HeadlessException ex) {
             JOptionPane.showMessageDialog(null, "Lütfen doğru formatta giriniz!");
         }
         showRoomTable();
-    }//GEN-LAST:event_addPatientActionPerformed
+    }//GEN-LAST:event_addRoomActionPerformed
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
         MenuPage obj = new MenuPage();
@@ -516,6 +520,15 @@ public class Module4 extends javax.swing.JFrame {
             pst.setString(1, getTcNo());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Başarıyla silindi!");
+            jTextField1.setText(null);
+            jTextField2.setText(null);
+            jTextField3.setText(null);
+            jTextField4.setText(null);
+            jTextField5.setText(null);
+            jTextField6.setText(null);
+            jComboBox1.setSelectedIndex(0);
+            jDateChooser1.setDate(null);
+            jDateChooser2.setDate(null);
         } catch (SQLException | HeadlessException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -529,7 +542,15 @@ public class Module4 extends javax.swing.JFrame {
             PreparedStatement pst = con.prepareStatement(sql);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Başarıyla güncellendi!");
-
+            jTextField1.setText(null);
+            jTextField2.setText(null);
+            jTextField3.setText(null);
+            jTextField4.setText(null);
+            jTextField5.setText(null);
+            jTextField6.setText(null);
+            jComboBox1.setSelectedIndex(0);
+            jDateChooser1.setDate(null);
+            jDateChooser2.setDate(null);
         } catch (SQLException | HeadlessException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -609,7 +630,7 @@ public class Module4 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addPatient;
+    private javax.swing.JButton addRoom;
     private javax.swing.JButton backButton;
     private javax.swing.JButton deleteRoom;
     private javax.swing.JLabel fname;

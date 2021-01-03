@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,8 +14,6 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +26,6 @@ import javax.swing.table.TableRowSorter;
  */
 public class Module3 extends javax.swing.JFrame {
 
-    Connection con;
     DefaultTableModel dm;
 
     private int appointmentID;
@@ -121,7 +117,7 @@ public class Module3 extends javax.swing.JFrame {
         initComponents();
         CreateColumns();
         setExtendedState(Module3.MAXIMIZED_BOTH);
-        Color background = new Color(236,242,246);
+        Color background = new Color(236, 242, 246);
         this.getContentPane().setBackground(background);
         showAppointmentTable();
         showDoctors();
@@ -317,10 +313,6 @@ public class Module3 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(537, 537, 537))
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -351,7 +343,7 @@ public class Module3 extends javax.swing.JFrame {
                             .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                             .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(75, 75, 75))
+                        .addGap(60, 60, 60))
                     .addComponent(jLabel4)
                     .addComponent(pname))
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -369,14 +361,18 @@ public class Module3 extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(467, 467, 467))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -418,11 +414,11 @@ public class Module3 extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(updateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(searchAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -461,6 +457,14 @@ public class Module3 extends javax.swing.JFrame {
             pst.setInt(1, getAppointmentID());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Başarıyla silindi!");
+            jTextField1.setText(null);
+            jTextField2.setText(null);
+            jTextField3.setText(null);
+            jTextField4.setText(null);
+            jTextField5.setText(null);
+            jComboBox1.setSelectedIndex(0);
+            jComboBox2.setSelectedIndex(0);
+            jDateChooser1.setDate(null);
         } catch (SQLException | HeadlessException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -474,7 +478,14 @@ public class Module3 extends javax.swing.JFrame {
             PreparedStatement pst = con.prepareStatement(sql);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Başarıyla güncellendi!");
-
+            jTextField1.setText(null);
+            jTextField2.setText(null);
+            jTextField3.setText(null);
+            jTextField4.setText(null);
+            jTextField5.setText(null);
+            jComboBox1.setSelectedIndex(0);
+            jComboBox2.setSelectedIndex(0);
+            jDateChooser1.setDate(null);
         } catch (SQLException | HeadlessException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }

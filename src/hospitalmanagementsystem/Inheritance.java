@@ -9,6 +9,28 @@ package hospitalmanagementsystem;
  *
  * @author Zeynep
  */
-public class Inheritance {
-    
+class Inheritance {
+
+    String hastane = "Okcu Hastanesi";
+
+    public void calistir() {
+        System.out.println("Sistem çalıştırılıyor.");
+    }
+}
+
+// Polymorphism örneğidir.
+class Durum extends Inheritance {
+
+    @Override
+    public void calistir() {
+        System.out.println("Sistem uygun.");
+    }
+}
+
+class Sonuc extends Inheritance {
+
+    @Override
+    public void calistir() {
+        System.out.println("Sistemi kullanabilirsiniz.");
+    }
 }

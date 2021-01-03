@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,8 +11,6 @@ import java.sql.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +23,6 @@ import javax.swing.table.TableRowSorter;
  */
 public class Module1 extends javax.swing.JFrame {
 
-    Connection con;
     DefaultTableModel dm;
 
     private int patientID;
@@ -50,7 +46,7 @@ public class Module1 extends javax.swing.JFrame {
     }
 
     public String getFirstName() {
-        firstName  = jTextField2.getText();
+        firstName = jTextField2.getText();
         return firstName;
     }
 
@@ -59,7 +55,7 @@ public class Module1 extends javax.swing.JFrame {
     }
 
     public String getLastName() {
-        lastName  = jTextField3.getText();
+        lastName = jTextField3.getText();
         return lastName;
     }
 
@@ -68,7 +64,7 @@ public class Module1 extends javax.swing.JFrame {
     }
 
     public String getTcNo() {
-        tcNo  = jTextField4.getText();
+        tcNo = jTextField4.getText();
         return tcNo;
     }
 
@@ -77,7 +73,7 @@ public class Module1 extends javax.swing.JFrame {
     }
 
     public String getGender() {
-        gender  = (String) jComboBox1.getSelectedItem();
+        gender = (String) jComboBox1.getSelectedItem();
         return gender;
     }
 
@@ -137,7 +133,7 @@ public class Module1 extends javax.swing.JFrame {
         initComponents();
         CreateColumns();
         setExtendedState(Module1.MAXIMIZED_BOTH);
-        Color background = new Color(236,242,246);
+        Color background = new Color(236, 242, 246);
         this.getContentPane().setBackground(background);
         showPatientTable();
         showPolyclinics();
@@ -170,7 +166,7 @@ public class Module1 extends javax.swing.JFrame {
             tm.setRowCount(0);
 
             while (rs.next()) {
-                Object o[] = {rs.getInt("patientID"), rs.getString("patientName"), rs.getString("patientSurname"), rs.getInt("patientTC"), rs.getString("gender"), rs.getInt("contactno"), rs.getString("btype"), rs.getString("polyclinic"), rs.getString("disease"), rs.getInt("roomno")};
+                Object o[] = {rs.getInt("patientID"), rs.getString("patientName"), rs.getString("patientSurname"), rs.getString("patientTC"), rs.getString("gender"), rs.getString("contactno"), rs.getString("btype"), rs.getString("polyclinic"), rs.getString("disease"), rs.getInt("roomno")};
                 tm.addRow(o);
             }
 
@@ -190,7 +186,6 @@ public class Module1 extends javax.swing.JFrame {
                 jComboBox3.addItem(rs.getString("polyclinicName"));
             }
             con.close();
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -334,7 +329,7 @@ public class Module1 extends javax.swing.JFrame {
 
         jLabel10.setText("Aramak istediğiniz hastanın TC kimlik numarasını giriniz:");
 
-        jLabel14.setFont(new java.awt.Font("Franklin Gothic Book", 0, 24)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(61, 76, 143));
         jLabel14.setText("Yeni Hasta Ekle");
 
@@ -420,45 +415,45 @@ public class Module1 extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(pname)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(35, 35, 35)
+                                .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(fname, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
+                                .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel13)
                                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
+                                .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel8)
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
+                                .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
+                                .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
-                                .addGap(35, 35, 35)
+                                .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
                                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(92, 92, 92)
+                                .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel12)
                                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(59, 59, 59))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
+                                .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -474,7 +469,7 @@ public class Module1 extends javax.swing.JFrame {
                     .addComponent(updatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -489,7 +484,16 @@ public class Module1 extends javax.swing.JFrame {
             Statement st = con.createStatement();
             st.executeUpdate("insert into patients values('" + getPatientID() + "','" + getFirstName() + "','" + getLastName() + "','" + getTcNo() + "','" + getGender() + "','" + getContactNo() + "','" + getBloodType() + "','" + getPolyclinic() + "','" + getDisease() + "','" + getRoomNo() + "')");
             JOptionPane.showMessageDialog(null, "Başarıyla eklendi!");
-
+            jTextField1.setText(null);
+            jTextField2.setText(null);
+            jTextField3.setText(null);
+            jTextField4.setText(null);
+            jTextField5.setText(null);
+            jTextField6.setText(null);
+            jTextField7.setText(null);
+            jComboBox1.setSelectedIndex(0);
+            jComboBox2.setSelectedIndex(0);
+            jComboBox3.setSelectedIndex(0);
         } catch (SQLException | HeadlessException ex) {
             JOptionPane.showMessageDialog(null, "Lütfen doğru formatta giriniz!");
         }
@@ -523,6 +527,16 @@ public class Module1 extends javax.swing.JFrame {
             pst.setInt(1, getPatientID());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Başarıyla silindi!");
+            jTextField1.setText(null);
+            jTextField2.setText(null);
+            jTextField3.setText(null);
+            jTextField4.setText(null);
+            jTextField5.setText(null);
+            jTextField6.setText(null);
+            jTextField7.setText(null);
+            jComboBox1.setSelectedIndex(0);
+            jComboBox2.setSelectedIndex(0);
+            jComboBox3.setSelectedIndex(0);
         } catch (SQLException | HeadlessException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -536,7 +550,16 @@ public class Module1 extends javax.swing.JFrame {
             PreparedStatement pst = con.prepareStatement(sql);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Başarıyla güncellendi!");
-
+            jTextField1.setText(null);
+            jTextField2.setText(null);
+            jTextField3.setText(null);
+            jTextField4.setText(null);
+            jTextField5.setText(null);
+            jTextField6.setText(null);
+            jTextField7.setText(null);
+            jComboBox1.setSelectedIndex(0);
+            jComboBox2.setSelectedIndex(0);
+            jComboBox3.setSelectedIndex(0);
         } catch (SQLException | HeadlessException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }

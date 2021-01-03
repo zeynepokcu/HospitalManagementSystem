@@ -24,8 +24,6 @@ import javax.swing.JOptionPane;
  */
 public class LoginPage extends javax.swing.JFrame {
 
-    Connection con;
-
     private String username;
     private String password;
     private String ltype;
@@ -75,7 +73,6 @@ public class LoginPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPasswordField1 = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         forgotPasswordButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -87,8 +84,6 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-
-        jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Giriş Sayfası");
@@ -238,7 +233,7 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void forgotPasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotPasswordButtonActionPerformed
-        ShowPassword obj = new ShowPassword();
+        SavePassword obj = new SavePassword();
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_forgotPasswordButtonActionPerformed
@@ -286,7 +281,6 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField jTextField2;
     private javax.swing.JButton loginButton;

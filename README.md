@@ -5,7 +5,6 @@ The key features are listed below:-
 
 For Patients:
 -Register as an patient account
--Delete their own account
 -Booking an appointment
 -Searching an appointment
 -See their appointment information
@@ -14,7 +13,6 @@ For Patients:
 
 For Admin:
 -Register as an admin account
--Delete their own account
 -Add patient, doctor, polyclinic, room, payment in database
 -Delete patient, doctor, polyclinic, appointment, room, payment from database
 -Update patient, doctor, polyclinic, appointment, room, payment

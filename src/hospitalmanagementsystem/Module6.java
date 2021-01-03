@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,8 +11,6 @@ import java.sql.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
@@ -28,7 +25,6 @@ import javax.swing.table.TableRowSorter;
  */
 public class Module6 extends javax.swing.JFrame {
 
-    Connection con;
     DefaultTableModel dm;
 
     int polyclinicNo;

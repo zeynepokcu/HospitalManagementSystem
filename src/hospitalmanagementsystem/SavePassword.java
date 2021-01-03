@@ -1,36 +1,30 @@
-package hospitalmanagementsystem;
-
-import hospitalmanagementsystem.LoginPage;
-import hospitalmanagementsystem.SignUp;
-import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package hospitalmanagementsystem;
+
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Zeynep
  */
-public class ShowPassword extends javax.swing.JFrame {
+public class SavePassword extends javax.swing.JFrame {
 
-    Connection con;
     ResultSet rs;
     PreparedStatement pst;
 
     /**
      * Creates new form ResetPassword
      */
-    public ShowPassword() {
+    public SavePassword() {
         initComponents();
     }
 
@@ -60,6 +54,7 @@ public class ShowPassword extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Şifre Kurtarma");
 
         jPanel1.setBackground(new java.awt.Color(236, 242, 246));
 
@@ -181,7 +176,6 @@ public class ShowPassword extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try {
-            String a1 = jTextField1.getText();
             String a2 = jTextField4.getText();
             String sql = "SELECT * FROM Users where answer='" + a2 + "'";
             Connection con = ConnectionProvider.getCon();
@@ -202,7 +196,6 @@ public class ShowPassword extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-
         try {
             String a1 = jTextField1.getText();
             String sql = "SELECT * FROM users WHERE username='" + a1 + "'";
@@ -239,21 +232,23 @@ public class ShowPassword extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShowPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SavePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShowPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SavePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShowPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SavePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShowPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SavePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ShowPassword().setVisible(true);
+                new SavePassword().setVisible(true);
             }
         });
     }
