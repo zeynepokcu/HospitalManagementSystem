@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -437,12 +439,16 @@ public class Module3 extends javax.swing.JFrame {
         jTextField1.setText(appointmentTable.getValueAt(appointmentTable.getSelectedRow(), 0).toString());
         jComboBox1.setSelectedItem(appointmentTable.getValueAt(appointmentTable.getSelectedRow(), 1).toString());
         jComboBox2.setSelectedItem(appointmentTable.getValueAt(appointmentTable.getSelectedRow(), 2).toString());
+        int getSelectedRowForUpdate = appointmentTable.getSelectedRow();
+
+        String val = (String) appointmentTable.getValueAt(getSelectedRowForUpdate, 3);
+        java.util.Date date = null;
         try {
-            DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            java.sql.Date date = (java.sql.Date) simpleDateFormat.parse(" ");
-            jDateChooser1.setDate((java.util.Date) appointmentTable.getValueAt(appointmentTable.getSelectedRow(), 3));
-        } catch (ParseException e) {
+            date = new SimpleDateFormat("yyyy-MM-dd").parse(val);
+        } catch (ParseException ex) {
+            Logger.getLogger(Module1.class.getName()).log(Level.SEVERE, null, ex);
         }
+        jDateChooser1.setDate(date);
         jTextField2.setText(appointmentTable.getValueAt(appointmentTable.getSelectedRow(), 4).toString());
         jTextField3.setText(appointmentTable.getValueAt(appointmentTable.getSelectedRow(), 5).toString());
         jTextField4.setText(appointmentTable.getValueAt(appointmentTable.getSelectedRow(), 6).toString());

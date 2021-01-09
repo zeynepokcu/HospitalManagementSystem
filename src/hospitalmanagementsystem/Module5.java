@@ -30,14 +30,14 @@ public class Module5 extends javax.swing.JFrame {
 
     DefaultTableModel dm;
 
-    int paymentNo;
-    String tcNo;
-    String firstName;
-    String lastName;
-    float bill;
-    String didPay = " ";
-    String date = " ";
-    String time = " ";
+    private int paymentNo;
+    private String tcNo;
+    private String firstName;
+    private String lastName;
+    private float bill;
+    private String didPay = " ";
+    private String date = " ";
+    private String time = " ";
 
     public int getPaymentNo() {
         paymentNo = Integer.parseInt(jTextField1.getText());

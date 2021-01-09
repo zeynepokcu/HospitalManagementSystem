@@ -27,8 +27,8 @@ public class Module6 extends javax.swing.JFrame {
 
     DefaultTableModel dm;
 
-    int polyclinicNo;
-    String polyclinicName;
+    private int polyclinicNo;
+    private String polyclinicName;
 
     public int getPolyclinicNo() {
         polyclinicNo = Integer.parseInt(jTextField1.getText());
